@@ -52,4 +52,4 @@ FOUNDATION_EXPORT const unsigned char BlocksKitVersionString[];
 #import <BlocksKit/NSOrderedSet+BlocksKit.h>
 #import <BlocksKit/NSSet+BlocksKit.h>
 #import <BlocksKit/NSTimer+BlocksKit.h>
-
+#import <BlocksKit/BlocksKit+UIKit.h>
