@@ -17,12 +17,11 @@
 
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    BOOL ret = YES;
     id realDelegate = self.realDelegate;
     if (realDelegate && [realDelegate respondsToSelector:@selector(webView:shouldStartLoadWithRequest:navigationType:)])
         [realDelegate webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:decisionHandler];
 
-    void (^block)(WKWebView *, WKNavigationAction *, (void (^decisionHandler)(WKNavigationActionPolicy))) = [self blockImplementationForMethod:_cmd];
+    void (^block)(WKWebView *, WKNavigationAction *, void (^decisionHandler)(WKNavigationActionPolicy)) = [self blockImplementationForMethod:_cmd];
     if (block)
         block(webView, navigationAction, decisionHandler);
 }

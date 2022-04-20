@@ -22,14 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
  the return values of both the delegate method and the block will be considered.
 */
 
-@property (nonatomic, copy, setter = bk_setShouldStartLoadBlock:, nullable) void (^bk_shouldStartLoadBlock)(WKWebView *webView, WKNavigationAction *navigationAction, (void (^)(WKNavigationActionPolicy)));
+@property (nonatomic, copy, setter = bk_setShouldStartLoadBlock:, nullable) void (^bk_shouldStartLoadBlock)(WKWebView *webView, WKNavigationAction *navigationAction, void (^)(WKNavigationActionPolicy));
 
-//void (^(^complexBlock)(void (^)(WKNavigationActionPolicy)))(void))
-
-//@property (nonatomic, copy, setter = bk_setShouldStartLoadBlock:, nullable) void (^bk_shouldStartLoadBlock)(WKWebView *webView, WKNavigationAction *navigationAction, (void (^)(WKNavigationActionPolicy)) decisionHandler);
-
-
-//(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))
 
 /** The block that is fired when the web view starts loading. */
 @property (nonatomic, copy, setter = bk_setDidStartLoadBlock:, nullable) void (^bk_didStartLoadBlock)(WKWebView *webView, WKNavigation *navigation);
