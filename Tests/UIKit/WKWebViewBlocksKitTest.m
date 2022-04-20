@@ -43,14 +43,15 @@
 	_subject.navigationDelegate = self;
 	
 	__block BOOL shouldStartLoadBlock = NO;
-    
-	_subject.bk_shouldStartLoadBlock = ^void(WKWebView *webView, WKNavigationAction *navigationAction, (void (^)(WKNavigationActionPolicy))) {
+    WKNavigationAction *action = [WKNavigationAction init];
+	_subject.bk_shouldStartLoadBlock = ^void(WKWebView *webView, WKNavigationAction *navigationAction, void (^)(WKNavigationActionPolicy)) {
 		shouldStartLoadBlock = YES;
 	};
+    
+    
+    [_subject.bk_dynamicDelegate webView:_subject decidePolicyForNavigationAction:action decisionHandler:^(WKNavigationActionPolicy){}];
+
 	
-	BOOL shouldStartLoad = [_subject.bk_dynamicDelegate webView:_subject shouldStartLoadWithRequest:nil navigationType:WKNavigationTypeLinkActivated];
-	
-	XCTAssertTrue(shouldStartLoad, @"Web view is allowed to load");
 	XCTAssertTrue(shouldStartLoadBlock, @"Block handler was called");
 	XCTAssertTrue(shouldStartLoadDelegate, @"Delegate was called");
 }
@@ -59,11 +60,11 @@
 	_subject.navigationDelegate = self;
 	
 	__block BOOL didStartLoadBlock = NO;
-	_subject.bk_didStartLoadBlock = ^(WKWebView *view) {
+	_subject.bk_didStartLoadBlock = ^(WKWebView *view, WKNavigation *navigation) {
 		didStartLoadBlock = YES;
 	};
 	
-	[_subject.bk_dynamicDelegate webViewDidStartLoad:_subject];
+    [_subject.bk_dynamicDelegate webView:_subject didStartProvisionalNavigation:nil];
 	
 	XCTAssertTrue(didStartLoadBlock, @"Block handler was called");
 	XCTAssertTrue(didStartLoadDelegate, @"Delegate was called");
@@ -73,11 +74,11 @@
 	_subject.navigationDelegate = self;
 	
 	__block BOOL didFinishLoadBlock = NO;
-	_subject.bk_didFinishLoadBlock = ^(WKWebView *view) {
+	_subject.bk_didFinishLoadBlock = ^(WKWebView *view, WKNavigation *navigation) {
 		didFinishLoadBlock = YES;
 	};
 	
-	[_subject.bk_dynamicDelegate webViewDidFinishLoad:_subject];
+    [_subject.bk_dynamicDelegate webView:_subject didFinishNavigation:nil];
 	
 	XCTAssertTrue(didFinishLoadBlock, @"Block handler was called");
 	XCTAssertTrue(didFinishLoadDelegate, @"Delegate was called");
@@ -91,7 +92,9 @@
 		didFinishWithErrorBlock = YES;
 	};
 	
-    [_subject.bk_dynamicDelegate webView:_subject didFailNavigation:nil withError:nil];
+    WKNavigation *action = [WKNavigation init];
+    NSError *error = [NSError init];
+    [_subject.bk_dynamicDelegate webView:_subject didFailNavigation:action withError:error];
 	
 	XCTAssertTrue(didFinishWithErrorBlock, @"Block handler was called");
 	XCTAssertTrue(didFinishWithErrorDelegate, @"Delegate was called");
