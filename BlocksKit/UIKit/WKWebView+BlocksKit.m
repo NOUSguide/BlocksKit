@@ -1,5 +1,5 @@
 //
-//  UIWebView+BlocksKit.m
+//  WKWebView+BlocksKit.m
 //  BlocksKit
 //
 
@@ -24,20 +24,6 @@
     void (^block)(WKWebView *, WKNavigationAction *, void (^decisionHandler)(WKNavigationActionPolicy)) = [self blockImplementationForMethod:_cmd];
     if (block)
         block(webView, navigationAction, decisionHandler);
-}
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	BOOL ret = YES;
-	
-	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(webView:shouldStartLoadWithRequest:navigationType:)])
-		ret = [realDelegate webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
-
-	BOOL (^block)(UIWebView *, NSURLRequest *, UIWebViewNavigationType) = [self blockImplementationForMethod:_cmd];
-	if (block)
-		ret &= block(webView, request, navigationType);
-
-	return ret;
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
