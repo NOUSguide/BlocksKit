@@ -5,7 +5,7 @@
 //  Contributed by Yas Kuraishi.
 //
 
-#import "BKDefines.h"
+#import <BlocksKit/BKDefines.h>
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN

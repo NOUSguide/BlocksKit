@@ -3,7 +3,7 @@
 //  BlocksKit
 //
 
-#import "BKDefines.h"
+#import <BlocksKit/BKDefines.h>
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CGBase.h> // for CGFloat
 
