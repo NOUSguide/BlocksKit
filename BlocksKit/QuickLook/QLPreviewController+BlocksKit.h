@@ -3,7 +3,7 @@
 //  BlocksKit
 //
 
-#import "BKDefines.h"
+#import <BlocksKit/BKDefines.h>
 #import <QuickLook/QuickLook.h>
 
 NS_ASSUME_NONNULL_BEGIN

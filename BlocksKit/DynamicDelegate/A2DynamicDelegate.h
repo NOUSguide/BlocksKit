@@ -3,7 +3,7 @@
 //  BlocksKit
 //
 
-#import "BKDefines.h"
+#import <BlocksKit/BKDefines.h>
 #import <Foundation/Foundation.h>
 #import <BlocksKit/NSObject+A2BlockDelegate.h>
 #import <BlocksKit/NSObject+A2DynamicDelegate.h>

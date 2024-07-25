@@ -4,7 +4,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BKDefines.h"
+#import <BlocksKit/BKDefines.h>
 
 /** UIActionSheet without delegates!
 

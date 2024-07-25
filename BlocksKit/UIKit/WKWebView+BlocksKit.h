@@ -3,7 +3,7 @@
 //  BlocksKit
 //
 
-#import "BKDefines.h"
+#import <BlocksKit/BKDefines.h>
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
